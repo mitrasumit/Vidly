@@ -35,7 +35,8 @@ namespace Vidly.Controllers
 
         public ActionResult Details(int id)
         {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);   //SingleorDefault returns a sngle value if present or returns null
+            var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);   //SingleorDefault returns a single value if present or returns null
+
 
             if (customer == null)
             {
